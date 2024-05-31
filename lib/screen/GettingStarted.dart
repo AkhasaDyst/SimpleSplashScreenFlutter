@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:slide_pager_flutter/model/Slide.dart';
+import 'package:slide_pager_flutter/widgets/SlideDots.dart';
 import 'package:slide_pager_flutter/widgets/SlideItem.dart';
 
 class Gettingstarted extends StatefulWidget {
@@ -52,15 +53,39 @@ class _GettingstartedState extends State<Gettingstarted> {
           child: Column(
             children: <Widget>[
               Expanded(
-                child: PageView.builder(
-                  scrollDirection: Axis.horizontal,
-                  controller: _pageController,
-                  onPageChanged: _onPageChanged,
-                  itemCount: SlideList.length,
-                  itemBuilder: (context, index) {
-                    // Ensure SlideItem is properly constructed
-                    return SlideItem(index);
-                  },
+                child: Stack(
+                  alignment: AlignmentDirectional.bottomCenter,
+                  children: <Widget>[
+                    PageView.builder(
+                      scrollDirection: Axis.horizontal,
+                      controller: _pageController,
+                      onPageChanged: _onPageChanged,
+                      itemCount: SlideList.length,
+                      itemBuilder: (context, index) {
+                        // Ensure SlideItem is properly constructed
+                        return SlideItem(index);
+                      },
+                    ),
+                    Stack(
+                      alignment: AlignmentDirectional.topStart,
+                      children: <Widget>[
+                        Container(
+                          margin: EdgeInsets.only(bottom: 35),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              for(int i = 0; i<SlideList.length;i++ )
+                                if( i == _currentPage)
+                                  Slidedots(isActive: true)
+                                else
+                                  Slidedots(isActive: false)
+                            ],
+                          ),
+                        )
+                      ],
+                    )
+                  ],
                 ),
               ),
               SizedBox(height: 30,),
