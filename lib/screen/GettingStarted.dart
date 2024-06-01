@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:slide_pager_flutter/model/Slide.dart';
+import 'package:slide_pager_flutter/screen/LoginScreen.dart';
+import 'package:slide_pager_flutter/screen/RegisterScreen.dart';
 import 'package:slide_pager_flutter/widgets/SlideDots.dart';
 import 'package:slide_pager_flutter/widgets/SlideItem.dart';
 
@@ -44,7 +46,7 @@ class _GettingstartedState extends State<Gettingstarted> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+
       ),
       body: Container(
         color: Colors.white,
@@ -93,7 +95,9 @@ class _GettingstartedState extends State<Gettingstarted> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   TextButton(
-                    onPressed: (){},
+                    onPressed: (){
+                      Navigator.of(context).pushNamed(Registerscreen.routeName);
+                    },
                     child: Text('Getting Started', style: TextStyle( fontSize: 18),),
                     style: TextButton.styleFrom(
                         foregroundColor: Colors.blue,
@@ -106,7 +110,9 @@ class _GettingstartedState extends State<Gettingstarted> {
                     children: <Widget>[
                       Text("Have an Account?", style: TextStyle(fontSize: 18),),
                       TextButton(
-                        onPressed: (){},
+                        onPressed: (){
+                          Navigator.of(context).pushNamed(Loginscreen.routeName);
+                        },
                         child: Text('Login', style: TextStyle(fontSize: 18)),
                         style: TextButton.styleFrom(
                             foregroundColor: Colors.blue,
